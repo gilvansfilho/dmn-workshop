@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_8F6D6115-F0B2-45E0-96DF-A80B9A99D1E8" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_AF417FA3-F222-42DC-9D43-BABD7CD7844F" name="Untitled" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_8F6D6115-F0B2-45E0-96DF-A80B9A99D1E8">
+  <dmn:extensionElements/>
+  <dmn:itemDefinition id="_9080A01B-2C44-40A5-8086-60D2E960173B" name="Pessoa" isCollection="false">
+    <dmn:itemComponent id="_9812E248-E64B-458F-B5E6-8317B3D19565" name="altura" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_BF6AB99E-7FEB-49E9-977E-4DC00B05F05C" name="idade" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:itemDefinition id="_7CDD965F-7A40-4BD9-B45E-D89960E4D929" name="Brinquedo" isCollection="false">
+    <dmn:itemComponent id="_188808D6-35B2-4FE5-A8B7-FE909B8D2B4F" name="nome" isCollection="false">
+      <dmn:typeRef>string</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_35BF119F-DE11-43B3-946B-66072E8E7382" name="idadeMaxima" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_AC452164-715E-4E6C-A8B9-294B809A10D2" name="idadeMinima" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+    <dmn:itemComponent id="_DE31F3EC-FEB1-4674-AC1D-ED9ADDFC250A" name="alturaMinima" isCollection="false">
+      <dmn:typeRef>number</dmn:typeRef>
+    </dmn:itemComponent>
+  </dmn:itemDefinition>
+  <dmn:inputData id="_E40837FB-CBA5-4DE9-BCA0-4E512B57D2F1" name="pessoa">
+    <dmn:extensionElements/>
+    <dmn:variable id="_FC85E2E9-7703-4B7B-B3E0-189CABA25ED1" name="pessoa" typeRef="Pessoa"/>
+  </dmn:inputData>
+  <dmn:inputData id="_6B0350B9-6913-43A4-A27D-50FC333BC0D9" name="opcao">
+    <dmn:extensionElements/>
+    <dmn:variable id="_96DFECD0-A439-44F7-8859-D1939F8EC82D" name="opcao" typeRef="string"/>
+  </dmn:inputData>
+  <dmn:decision id="_EF96574E-8B37-43AD-9B0B-692188027884" name="PodeBrincar">
+    <dmn:extensionElements/>
+    <dmn:variable id="_30B9BABA-CB95-451C-BB1C-1FEA5D3C344D" name="PodeBrincar" typeRef="Brinquedo"/>
+    <dmn:informationRequirement id="_89B3B374-D8C6-4FBC-9DA3-192246E0557C">
+      <dmn:requiredInput href="#_E40837FB-CBA5-4DE9-BCA0-4E512B57D2F1"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_335E7586-0FB9-43A9-ADE5-45EF60B07AB8">
+      <dmn:requiredInput href="#_6B0350B9-6913-43A4-A27D-50FC333BC0D9"/>
+    </dmn:informationRequirement>
+    <dmn:knowledgeRequirement id="_34596EBE-2B78-4C9D-B3B3-966E980FEFE6">
+      <dmn:requiredKnowledge href="#_F1F11C1E-73F7-4D48-96DA-1E97175F2B5F"/>
+    </dmn:knowledgeRequirement>
+    <dmn:context id="_7291916F-A1E7-4924-A4F6-42C677252CBE">
+      <dmn:contextEntry>
+        <dmn:variable id="_2E36D267-0AD0-4F9C-AFBE-A58ADC1FF525" name="brinquedoSelecionado" typeRef="Brinquedo"/>
+        <dmn:invocation id="_DD58ADB8-0F5F-4FBB-94B8-2D1EFCBA3824">
+          <dmn:literalExpression id="_14071A67-F2FC-4611-A5FA-1D22262DB386">
+            <dmn:text>selecionarBrinquedo</dmn:text>
+          </dmn:literalExpression>
+          <dmn:binding>
+            <dmn:parameter id="_F4FFB387-1492-4896-9C51-BECE20F3709C" name="x" typeRef="string"/>
+            <dmn:literalExpression id="_4E207D10-5D6D-476B-950F-286CC41812EE">
+              <dmn:text>opcao</dmn:text>
+            </dmn:literalExpression>
+          </dmn:binding>
+        </dmn:invocation>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:variable id="_7F1FC309-C8FB-4E89-B672-D9D2E4C8E24C" name="alturaValida" typeRef="boolean"/>
+        <dmn:literalExpression id="_52C9F9D1-3931-456B-BE10-9A5138D3A2F7">
+          <dmn:text>pessoa.altura &gt;= brinquedoSelecionado.alturaMinima</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:variable id="_3C0E6CC0-A5E7-4729-B921-F829E66984E2" name="idadeValida" typeRef="boolean"/>
+        <dmn:literalExpression id="_56413C64-4611-41A5-B982-3CA5CA85897F">
+          <dmn:text>brinquedoSelecionado.idadeMaxima &gt;= pessoa.idade and brinquedoSelecionado.idadeMinima &lt;= pessoa.idade</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+      <dmn:contextEntry>
+        <dmn:literalExpression id="_92A49384-57E8-44AF-9FC0-25F7A780D5BC">
+          <dmn:text>alturaValida and idadeValida</dmn:text>
+        </dmn:literalExpression>
+      </dmn:contextEntry>
+    </dmn:context>
+  </dmn:decision>
+  <dmn:businessKnowledgeModel id="_F1F11C1E-73F7-4D48-96DA-1E97175F2B5F" name="selecionarBrinquedo">
+    <dmn:extensionElements/>
+    <dmn:variable id="_C92015FE-2520-44D4-951A-1EE134C1697E" name="selecionarBrinquedo" typeRef="Brinquedo"/>
+    <dmn:encapsulatedLogic id="_6C0B5671-0040-45E7-AE36-674DAD8721EB" kind="FEEL">
+      <dmn:formalParameter id="_15E9FAC8-8022-44D6-8952-7B2DD81CB8D6" name="x" typeRef="string"/>
+      <dmn:context id="_74BA3267-F23F-4F59-8249-A9F924CF06C5">
+        <dmn:contextEntry>
+          <dmn:variable id="_FB6FE9CE-10CC-4539-B72D-79A23383339B" name="Brinquedos" typeRef="Brinquedo"/>
+          <dmn:list id="_F06335DD-4D00-430E-91C0-1B5929C58907">
+            <dmn:relation id="_24F21A8D-C1FD-4B40-8504-67E91EDE9E27">
+              <dmn:column id="_D1250BD2-87BD-48BA-A94A-88D79B93F415" name="nome" typeRef="string"/>
+              <dmn:column id="_DEB83A6F-71E7-456C-B836-0DDB0323087B" name="idadeMinima" typeRef="number"/>
+              <dmn:column id="_D87D925C-C6B0-4BBE-A55B-C89D32D1C0E2" name="idadeMaxima" typeRef="number"/>
+              <dmn:column id="_D1D8F105-B472-4124-9707-3360A262D66F" name="alturaMinima" typeRef="number"/>
+              <dmn:row id="_BA480BBE-C8AE-420D-9AEB-33D6335EFD82">
+                <dmn:literalExpression id="_38A2888B-04D0-42DA-9810-09587529CE81">
+                  <dmn:text>"Roda Gigante"</dmn:text>
+                </dmn:literalExpression>
+                <dmn:literalExpression id="_DF1F6AB3-F0E3-4580-B216-BA07B7ED7E2E">
+                  <dmn:text>1</dmn:text>
+                </dmn:literalExpression>
+                <dmn:literalExpression id="_22EDFECA-089A-4F58-A865-212102C72B27">
+                  <dmn:text>60</dmn:text>
+                </dmn:literalExpression>
+                <dmn:literalExpression id="_9679868F-1B2D-4E07-9A74-A15F340EADD6">
+                  <dmn:text>0.60</dmn:text>
+                </dmn:literalExpression>
+              </dmn:row>
+              <dmn:row id="_64D6D3DA-2C57-4C70-A9E1-435C31CEBACA">
+                <dmn:literalExpression id="_52589F2F-CCB9-4F61-B8EF-342820D0CAA0">
+                  <dmn:text>"Bate Bate"</dmn:text>
+                </dmn:literalExpression>
+                <dmn:literalExpression id="_CDFAE054-7A89-4D5E-A3AA-A92DDC860B9A">
+                  <dmn:text>5</dmn:text>
+                </dmn:literalExpression>
+                <dmn:literalExpression id="_F1FCC6CB-2D0A-438C-BC81-ECC173DF6172">
+                  <dmn:text>18</dmn:text>
+                </dmn:literalExpression>
+                <dmn:literalExpression id="_CF700227-A58D-49B8-9828-2736053FAFB1">
+                  <dmn:text>0.90</dmn:text>
+                </dmn:literalExpression>
+              </dmn:row>
+            </dmn:relation>
+          </dmn:list>
+        </dmn:contextEntry>
+        <dmn:contextEntry>
+          <dmn:literalExpression id="_689CA9B0-E3CE-44D6-A564-874DE07AE717">
+            <dmn:text>Brinquedos[nome = opcao]</dmn:text>
+          </dmn:literalExpression>
+        </dmn:contextEntry>
+      </dmn:context>
+    </dmn:encapsulatedLogic>
+  </dmn:businessKnowledgeModel>
+  <dmn:decision id="_DA195670-791E-492E-90DC-5A395AC5D307" name="BrinquedoSelecionado">
+    <dmn:extensionElements/>
+    <dmn:variable id="_D7604C06-610C-47D8-B4EA-1CDB11FD07F0" name="BrinquedoSelecionado" typeRef="Brinquedo"/>
+    <dmn:informationRequirement id="_D14D867F-CB73-457E-BAB7-BD9E3B92714C">
+      <dmn:requiredInput href="#_6B0350B9-6913-43A4-A27D-50FC333BC0D9"/>
+    </dmn:informationRequirement>
+    <dmn:knowledgeRequirement id="_69140FEE-91E7-4FC9-822A-A352EC2ECB12">
+      <dmn:requiredKnowledge href="#_F1F11C1E-73F7-4D48-96DA-1E97175F2B5F"/>
+    </dmn:knowledgeRequirement>
+    <dmn:literalExpression id="_8FD93D38-2610-4C7F-8A31-E670B627E304">
+      <dmn:text>selecionarBrinquedo(opcao)</dmn:text>
+    </dmn:literalExpression>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_5F12D0E1-9641-4B1E-9E2E-BD4D6851598F" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_7291916F-A1E7-4924-A4F6-42C677252CBE">
+            <kie:width>50</kie:width>
+            <kie:width>215</kie:width>
+            <kie:width>534</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_DD58ADB8-0F5F-4FBB-94B8-2D1EFCBA3824">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>364</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_14071A67-F2FC-4611-A5FA-1D22262DB386"/>
+          <kie:ComponentWidths dmnElementRef="_4E207D10-5D6D-476B-950F-286CC41812EE">
+            <kie:width>364</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_52C9F9D1-3931-456B-BE10-9A5138D3A2F7">
+            <kie:width>534</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_56413C64-4611-41A5-B982-3CA5CA85897F">
+            <kie:width>534</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_92A49384-57E8-44AF-9FC0-25F7A780D5BC">
+            <kie:width>534</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_74BA3267-F23F-4F59-8249-A9F924CF06C5">
+            <kie:width>50</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>987</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_F06335DD-4D00-430E-91C0-1B5929C58907">
+            <kie:width>50</kie:width>
+            <kie:width>917</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_24F21A8D-C1FD-4B40-8504-67E91EDE9E27">
+            <kie:width>50</kie:width>
+            <kie:width>547</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_38A2888B-04D0-42DA-9810-09587529CE81"/>
+          <kie:ComponentWidths dmnElementRef="_DF1F6AB3-F0E3-4580-B216-BA07B7ED7E2E"/>
+          <kie:ComponentWidths dmnElementRef="_22EDFECA-089A-4F58-A865-212102C72B27"/>
+          <kie:ComponentWidths dmnElementRef="_9679868F-1B2D-4E07-9A74-A15F340EADD6"/>
+          <kie:ComponentWidths dmnElementRef="_52589F2F-CCB9-4F61-B8EF-342820D0CAA0"/>
+          <kie:ComponentWidths dmnElementRef="_CDFAE054-7A89-4D5E-A3AA-A92DDC860B9A"/>
+          <kie:ComponentWidths dmnElementRef="_F1FCC6CB-2D0A-438C-BC81-ECC173DF6172"/>
+          <kie:ComponentWidths dmnElementRef="_CF700227-A58D-49B8-9828-2736053FAFB1"/>
+          <kie:ComponentWidths dmnElementRef="_689CA9B0-E3CE-44D6-A564-874DE07AE717">
+            <kie:width>987</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_6C0B5671-0040-45E7-AE36-674DAD8721EB">
+            <kie:width>50</kie:width>
+            <kie:width>1157</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_8FD93D38-2610-4C7F-8A31-E670B627E304">
+            <kie:width>300</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_E40837FB-CBA5-4DE9-BCA0-4E512B57D2F1" dmnElementRef="_E40837FB-CBA5-4DE9-BCA0-4E512B57D2F1" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="732.5981308411215" y="369" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_6B0350B9-6913-43A4-A27D-50FC333BC0D9" dmnElementRef="_6B0350B9-6913-43A4-A27D-50FC333BC0D9" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="952" y="369" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_EF96574E-8B37-43AD-9B0B-692188027884" dmnElementRef="_EF96574E-8B37-43AD-9B0B-692188027884" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="734" y="207" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_F1F11C1E-73F7-4D48-96DA-1E97175F2B5F" dmnElementRef="_F1F11C1E-73F7-4D48-96DA-1E97175F2B5F" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="913.2990654205607" y="207.19761334672125" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_DA195670-791E-492E-90DC-5A395AC5D307" dmnElementRef="_DA195670-791E-492E-90DC-5A395AC5D307" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="1094" y="207" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_89B3B374-D8C6-4FBC-9DA3-192246E0557C-AUTO-TARGET" dmnElementRef="_89B3B374-D8C6-4FBC-9DA3-192246E0557C">
+        <di:waypoint x="782.5981308411215" y="394"/>
+        <di:waypoint x="784" y="207"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_335E7586-0FB9-43A9-ADE5-45EF60B07AB8-AUTO-TARGET" dmnElementRef="_335E7586-0FB9-43A9-ADE5-45EF60B07AB8">
+        <di:waypoint x="1002" y="394"/>
+        <di:waypoint x="784" y="257"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_34596EBE-2B78-4C9D-B3B3-966E980FEFE6" dmnElementRef="_34596EBE-2B78-4C9D-B3B3-966E980FEFE6">
+        <di:waypoint x="963.2990654205607" y="232.19761334672125"/>
+        <di:waypoint x="834" y="232"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_D14D867F-CB73-457E-BAB7-BD9E3B92714C-AUTO-SOURCE-AUTO-TARGET" dmnElementRef="_D14D867F-CB73-457E-BAB7-BD9E3B92714C">
+        <di:waypoint x="1002" y="369"/>
+        <di:waypoint x="1144" y="257"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_69140FEE-91E7-4FC9-822A-A352EC2ECB12-AUTO-TARGET" dmnElementRef="_69140FEE-91E7-4FC9-822A-A352EC2ECB12">
+        <di:waypoint x="963.2990654205607" y="232.19761334672125"/>
+        <di:waypoint x="1094" y="232"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>

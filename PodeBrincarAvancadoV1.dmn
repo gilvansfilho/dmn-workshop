@@ -33,7 +33,7 @@
   </dmn:inputData>
   <dmn:decision id="_EF96574E-8B37-43AD-9B0B-692188027884" name="PodeBrincar">
     <dmn:extensionElements/>
-    <dmn:variable id="_30B9BABA-CB95-451C-BB1C-1FEA5D3C344D" name="PodeBrincar" typeRef="Brinquedo"/>
+    <dmn:variable id="_30B9BABA-CB95-451C-BB1C-1FEA5D3C344D" name="PodeBrincar" typeRef="boolean"/>
     <dmn:informationRequirement id="_89B3B374-D8C6-4FBC-9DA3-192246E0557C">
       <dmn:requiredInput href="#_E40837FB-CBA5-4DE9-BCA0-4E512B57D2F1"/>
     </dmn:informationRequirement>

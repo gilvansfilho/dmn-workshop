@@ -40,7 +40,7 @@
           <dmn:text>-</dmn:text>
         </dmn:inputEntry>
         <dmn:outputEntry id="_DCB4A973-678F-44B0-8C05-B380D4D6677A">
-          <dmn:text>false</dmn:text>
+          <dmn:text>"NÃO"</dmn:text>
         </dmn:outputEntry>
         <dmn:annotationEntry>
           <dmn:text/>
@@ -54,7 +54,7 @@
           <dmn:text>&gt; 14</dmn:text>
         </dmn:inputEntry>
         <dmn:outputEntry id="_725EE7E8-9DE3-490F-A315-C9C8B61E51FA">
-          <dmn:text>false</dmn:text>
+          <dmn:text>"NÃO"</dmn:text>
         </dmn:outputEntry>
         <dmn:annotationEntry>
           <dmn:text/>
@@ -68,7 +68,7 @@
           <dmn:text>&lt; 3</dmn:text>
         </dmn:inputEntry>
         <dmn:outputEntry id="_0F7BF35A-5548-4B20-B063-99C786BAED4E">
-          <dmn:text>false</dmn:text>
+          <dmn:text>"NÃO"</dmn:text>
         </dmn:outputEntry>
         <dmn:annotationEntry>
           <dmn:text/>
@@ -82,7 +82,7 @@
           <dmn:text>[3..14]</dmn:text>
         </dmn:inputEntry>
         <dmn:outputEntry id="_558C84C1-CF0A-4E4A-9712-DA9D70BDE0C1">
-          <dmn:text>true</dmn:text>
+          <dmn:text>"SIM"</dmn:text>
         </dmn:outputEntry>
         <dmn:annotationEntry>
           <dmn:text/>
